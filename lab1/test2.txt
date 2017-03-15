@@ -1,0 +1,7 @@
+print('nh?p vào s? nam: ')
+n=int(input())
+if n%4==0 and n%100!=0:
+    if n%400==0:
+        print('dây là nam nhu?n')
+    elif n%4!=0:
+        print('dây không là nam nhu?n')
