@@ -1,3 +1,4 @@
+import random
 
 
 lst=[3,4,5,67,8,9]
@@ -19,3 +20,12 @@ for key in john:
 for key in john.keys():
     print(key)
     print(john[key])
+
+
+
+
+def count(a,lst=[3,4,5]):
+    result=0
+    for x in lst:
+        result+=x
+    return a+result
