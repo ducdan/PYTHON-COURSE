@@ -1,6 +1,6 @@
 # Kiem tra mot nam co phai la nam nhuan hay khong
 
-# Xac dinh gia tri nhap vao co phu hop hay khong?
+# Xac dinh gia tri nhap vao co phu hop hay khong?20
 while True:
     try:
         year = int(input("Nam can xac dinh: "))
