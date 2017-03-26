@@ -5,7 +5,7 @@ def frequency(sentence):
     print("The sentence is: {}".format(sentence))
     words = sentence.split(" ")           # split sentence into words with space seperator
     freq = {}                             # frequency for every word in sentence
-    for word in words:                    # count substring word in sentence
+    for word in set(words):               # count substring word in sentence
         freq[word] = sentence.count(word)
     print("Output: > ")
     for word_key in sorted(freq.keys()):  # sort words in 123 order and print
