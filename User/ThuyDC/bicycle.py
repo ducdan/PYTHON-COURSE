@@ -61,7 +61,7 @@ shop=shop().inventory
 lstname = ['mau do', '  ']
 lstcost = ['1000', '  ']
 lstbi={}
-for i in range(6)
+for i in range(6):
     lstbi.append(Bicycle(lstname[i],lstcost[i]+lstcost*0.2))
 shop.setinventory(lstbi)
 
