@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Database | Xuat Nhap khau</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <!--<link href="../static/css/font-awesome.css" rel="stylesheet"> -->
+    <!-- NProgress -->
+    <link href="../static/css/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../static/css/green.css" rel="stylesheet">
+
+    <!-- Datatables -->
+    <link href="../static/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+
+      <link href="../static/css/custom.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  </head>
+<body>
+    <!-- page content -->
+    <div class="right_col" role="main">
+          <div class="">
+            <div class="clearfix"></div>
+            <div class="row">
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Xuat Nhap khau <small>Users</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="card-box table-responsive">
+                          <p class="text-muted font-13 m-b-30">
+                            KeyTable provides Excel like cell navigation on any table. Events (focus, blur, action etc) can be assigned to individual cells, columns, rows or all cells.
+                          </p>
+
+                          <table id="datatable-keytable" class="table table-striped table-bordered">
+{#                            <thead>
+                              <tr>
+                                <th>ID</th>
+                                <th>MAPN</th>
+                                <th>NCC</th>
+                                <th>NGUOINHAN</th>
+                                <th>NGAYNHAP</th>
+                                <th>DIADIEMNHAN</th>
+                                <th>SLTHEOCT</th>
+                                <th>SLTHUCNHAP</th>
+                                <th>TENSP</th>
+                                <th>CONTAINER</th>
+                                <th>DONVITINH</th>
+                                <th>SL</th>
+                                <th>PRICE</th>
+                                <th>NOTE</th>
+                                <th>CONTAINER</th>
+                                <th>MAPX</th>
+                                <th>TENKHACHHANG</th>
+                                <th>NGUOIGIAO</th>
+                                <th>NGAYGIAO</th>
+                                <th>DIADIEMGIAO</th>
+                                <th>SLTHEOYC</th>
+                                <th>SLTHUCXUAT</th>
+                                <th>MAKHO</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>5</td>
+                                <td>ABC</td>
+                                <td>TRANLY</td>
+                                <td>28/2/2016</td>
+                                <td>VONGXOAY</td>
+                                <td>1.2</td>
+                                <td>1.1</td>
+                                <td>CAM</td>
+                                <td>NUMBER_1</td>
+                                <td>Kg</td>
+                                <td>3.2</td>
+                                <td>12000</td>
+                                <td>KHONG_CO</td>
+                                <td>7</td>
+                                <td>CD</td>
+                                <td>ANH</td>
+                                <td>XE_OM</td>
+                                <td>2/3/2016</td>
+                                <td>GAM_CAU_VUOT</td>
+                                <td>5</td>
+                                <td>4.8</td>
+                                <td>124587</td>
+                              </tr>
+                              <tr>
+                                <td>1</td>
+                                <td>5</td>
+                                <td>ABC</td>
+                                <td>TRANLY</td>
+                                <td>28/2/2016</td>
+                                <td>VONGXOAY</td>
+                                <td>1.2</td>
+                                <td>1.1</td>
+                                <td>CAM</td>
+                                <td>NUMBER_1</td>
+                                <td>Kg</td>
+                                <td>3.2</td>
+                                <td>12000</td>
+                                <td>KHONG_CO</td>
+                                <td>7</td>
+                                <td>CD</td>
+                                <td>ANH</td>
+                                <td>XE_OM</td>
+                                <td>2/3/2016</td>
+                                <td>GAM_CAU_VUOT</td>
+                                <td>5</td>
+                                <td>4.8</td>
+                                <td>124587</td>
+                              </tr>
+                            </tbody>#}
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+    <!-- /page content -->
+
+    <script>
+        var returned_data = {
+        'ID' : [1, 2],
+        'MAPN' : [3, 4],
+        'NCC' : [5, 6],
+        'NGUOINHAN': ['LY', 'ANH'],
+        'NGAYNHAP': ['31/4/2016', '7/3/2016'],
+        'DIADIEMNHAN': ['Gam_cau', 'Chan_cau_vuot'],
+        'SLTHEOCT': [1.23, 5.2],
+        'SLTHUCNHAP':[5, 4],
+        'TENSP: ['cam', 'Tao'],
+        'DONVITINH':['kg', 'ounch'],
+        'SL': [1, 2],
+        'PRICE':[7000, 12000],
+        'NOTE': ['none', 'no'],
+        'CONTAINER':['C', 'D'],
+        'MAPX': ['T', 'H'],
+        'TENKHACHHANG': ['DOI', 'BUNG'],
+        'NGUOIGIAO':['WA', 'CHOI'],
+        'NGAYGIAO':['31/4/2016', '7/3/2016'],
+        'DIADIEMGIAO': ['Gam_cau', 'Chan_cau_vuot'],
+        'SLTHEOYC': [1, 4],
+        'SLTHUCXUAT':[ 2, 6],
+        'MAKHO': [134, 343]
+        };
+
+        var str = null ;
+        str = '<thead>' + '<br>' + '<tr>' ;
+        for ( i = 0; i < Object.keys(returned_data).length ; i++) {
+            str += '<th>' + returned_data.keys[i] + '</th>' + '<br>' ;
+        }
+        str += '</tr>' + '<br>' + '</thead>' + '<br>';
+
+        str += '<tbody>' + '<br>' ;
+        for ( i = 0; i < returned_data.length; i++) {
+            for ( j = 0 ; j < returned_data.keys[i]; j++ ) {
+                str += '<td>' + returned_data.keys[i][j] + '</td>' + '<br>';
+            }
+        }
+        str += '</tbody>' + '<br>';
+
+        $("#datatable-keytable").html(str);
+
+
+    </script>
+
+    <!-- jQuery -->
+    <script src="../static/js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../static/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../static/js/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../static/js/nprogress.js"></script>
+    <!-- iCheck -->
+    <script src="../static/js/icheck.min.js"></script>
+
+    <!-- Datatables -->
+    <script src="../static/js/jquery.dataTables.min.js"></script>
+    <script src="../static/js/dataTables.bootstrap.min.js"></script>
+    <script src="../static/js/dataTables.keyTable.min.js"></script>
+
+   <!-- Custom Theme Scripts -->
+    <script src="../static/js/custom.min.js"></script>
+
+  </body>
+</html>
