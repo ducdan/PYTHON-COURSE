@@ -51,8 +51,10 @@
 </head>
 
 <body class="container">
-
-<form>
+{% for x in range(10) %}
+{{ x }}
+{% endfor %}
+<form action="/querydb" method="post">
   <div class="form-group">
       <label for="sel1">Select list:</label>
     <select class="form-control" id="sel1" name="dk">
