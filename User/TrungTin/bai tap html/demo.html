@@ -1,0 +1,102 @@
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>
+</head>
+<body>
+
+<h2>Table</h2>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Tim kiem.." title="Type in a name">
+
+<table id="myTable">
+  <tr class="header">
+      <th style="width:50%;">Name</th>
+      <th style="width:25%;">Birthday</th>
+      <th style="width:25%;">Gender</th>
+  </tr>
+  <tr>
+    <td>Tin</td>
+    <td>1/1/1991</td>
+      <td>Male</td>
+  </tr>
+  <tr>
+    <td>Nam</td>
+    <td>2/2/1992</td>
+      <td>Male</td>
+  </tr>
+  <tr>
+    <td>Thanh</td>
+    <td>3/3/1993</td>
+      <td>Male</td>
+  </tr>
+  <tr>
+    <td>Nam</td>
+    <td>4/4/1994</td>
+      <td>Female</td>
+  </tr>
+  <tr>
+    <td>Hung</td>
+    <td>5/5/1995</td>
+      <td>Male</td>
+  </tr>
+
+
+
+</table>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+</body>
+</html>

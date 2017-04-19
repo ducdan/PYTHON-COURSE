@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../database_tut/.idea/database_tut.iml" filepath="$PROJECT_DIR$/../database_tut/.idea/database_tut.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ex1.iml" filepath="$PROJECT_DIR$/.idea/ex1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../fruitandgreen_project/.idea/fruitandgreen_project.iml" filepath="$PROJECT_DIR$/../fruitandgreen_project/.idea/fruitandgreen_project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../round1/.idea/round1.iml" filepath="$PROJECT_DIR$/../round1/.idea/round1.iml" />
+    </modules>
+  </component>
+</project>
