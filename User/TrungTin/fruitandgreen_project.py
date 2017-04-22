@@ -68,6 +68,18 @@ def show_kho():
 
     return render_template("XemHangTon.html", data = data)
 
+    def xuatnhapkhau():
+        xnk = XNK(requet.form['shipper'], requet.form['cosignee'], requet.form['eat'], requet.form['portofdischarge'],
+                  requet.form['invoice'], requet.form['containerNo'],
+                  requet.form['goods'], requet.form['carton'], requet.form['price'], requet.form['amountinvoice'],
+                  requet.form['paymentfromfruitsanhgreens'], requet.form['datepayment'], requet.form['creditnote'],
+                  requet.form['balance'], requet.form['note'],
+                  requet.form['loadNO'])
+        db.session.add(xnk)
+        db.session.commit()
+        return render_template('XuatNhapKhau.html')
+
+
 @app.route('/report')
 def report():
     return send_file('report.pdf',attachment_filename=True)
