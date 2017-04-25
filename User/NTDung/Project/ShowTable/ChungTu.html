@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Chứng từ </title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/css/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/css/green.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="../vendors/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../vendors/css/custom.min.css" rel="stylesheet">
+
+    <script>
+    function myFunction1() {
+        // Declare variables
+      var input, filter, table, tr, td, i;
+
+      input = document.getElementById("Kho");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("datatable-buttons");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+
+    <script>
+    function myFunction2() {
+      // Declare variables
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("LoaiSP");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("datatable-buttons");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+    <script>
+    function myFunction3() {
+      // Declare variables
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("TenSP");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("datatable-buttons");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[5];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+
+
+</head>
+<body>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2><b>Chứng từ</b></h2> <br> <br>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label name="Kho">&#160;Người giao hàng:</label>
+                    <input name="Kho" class="form-control" type="text" id="Kho" onkeyup="myFunction1()" placeholder="Tất cả">
+                </div>
+
+                <div class="form-group">
+                    <label name="LoaiSP">&#160;ETA:</label>
+                    <input name="LoaiSP" class="form-control" type="text" id="LoaiSP" onkeyup="myFunction2()" placeholder="Tất cả">
+                </div>
+                <div class="form-group">
+                    <label name="TenSP">&#160;Số Container:</label>
+                    <input name="TenSP" class="form-control" type="text" id="TenSP" onkeyup="myFunction3()" placeholder="Tất cả">
+                </div>
+            </form>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <table id="datatable-buttons" class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>Người giao hàng</th>
+                  <th>Cosignee</th>
+                  <th>ETA</th>
+                  <th>Cảng dỡ hàng</th>
+                  <th>Số hóa đơn</th>
+                  <th>Số Container</th>
+                  <th>Mặt hàng</th>
+                  <th>Thùng</th>
+                  <th>Giá (USD)</th>
+                  <th>Ngày thanh toán</th>
+                  <th>Chú thích</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>DOMEX</td>
+                  <td>F&G</td>
+                  <td>25/11/15</td>
+                  <td>HCM</td>
+                  <td>477641</td>
+                  <td>TCLU 123</td>
+                  <td>Táo Ambrosia TP 40</td>
+                  <td>100</td>
+                  <td>50</td>
+                  <td>29/11/15</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>DOMEX</td>
+                  <td>F&G</td>
+                  <td>25/11/15</td>
+                  <td>HCM</td>
+                  <td>477641</td>
+                  <td>TCLU 123</td>
+                  <td>Táo Ambrosia TP 56</td>
+                  <td>800</td>
+                  <td>60</td>
+                  <td>29/11/15</td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td>L&M</td>
+                  <td>F&G</td>
+                  <td>18/01/16</td>
+                  <td>HCM</td>
+                  <td>477653</td>
+                  <td>CPLU 345</td>
+                  <td>Đào GHV 47</td>
+                  <td>90</td>
+                  <td>200</td>
+                  <td>20/01/16</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>L&M</td>
+                  <td>F&G</td>
+                  <td>18/01/16</td>
+                  <td>HCM</td>
+                  <td>477653</td>
+                  <td>CPLU 345</td>
+                  <td>Đào GHV 60</td>
+                  <td>157</td>
+                  <td>250</td>
+                  <td>20/01/16</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
