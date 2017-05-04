@@ -1,0 +1,59 @@
+@app.route('/xemhangton', methods=['GET', 'POST'])
+def show_kho():
+    kho = ""
+    MaKho = ""
+    LoaiSp = ""
+    TenSp = ""
+    if request.method == 'POST':
+        kho = request.form['Kho']
+        MaKho = kho[0:4]
+        LoaiSp = request.form['LoaiSP']
+        TenSp = request.form['TenSP']
+    data = []
+    if ((kho == "Tất cả") & (LoaiSp == "") & (TenSp == "")):
+        data = KHO.query.all()
+    elif ((kho == "Tất cả") & (LoaiSp == "")):
+        data = KHO.query.filter_by(TenSP=TenSp).all()
+    elif ((kho == "Tất cả") & (TenSp == "")):
+        data = KHO.query.filter_by(LoaiSP=LoaiSp).all()
+    elif ((kho == "Tất cả")):
+        data = KHO.query.filter_by(LoaiSP=LoaiSp, TenSP=TenSp).all()
+    elif ((LoaiSp == "") & (TenSp == "")):
+        data = KHO.query.filter_by(MaKho=MaKho).all()
+    elif ((TenSp == "")):
+        data = KHO.query.filter_by(MaKho=MaKho, LoaiSP=LoaiSp).all()
+    elif ((LoaiSp == "")):
+        data = KHO.query.filter_by(MaKho=MaKho, TenSP=TenSp).all()
+    else:
+        data = KHO.query.filter_by(MaKho=MaKho, LoaiSP= LoaiSp, TenSP=TenSp).all()
+
+    return render_template("XemHangTon.html", data=data)
+
+
+@app.route('/xemchungtu', methods=['GET', 'POST'])
+def show_kho():
+    Shipper = ""
+    Consignee = ""
+    Container_No = ""
+    if request.method == 'POST':
+        Shipper = request.form['Shipper']
+        Consignee = request.form['Consignee']
+        Container_No = request.form['Container']
+    data = []
+    if ((Shipper == "Tất cả") & (Consignee == "Tất cả") & (Container_No == "")):
+        data = XNK.query.all()
+    elif ((Shipper == "Tất cả") & (Consignee == "Tất cả")):
+        data = XNK.query.filter_by(Container_No=Container_No).all()
+    elif ((Shipper == "Tất cả") & (Container_No == "")):
+        data = XNK.query.filter_by(Cosignee=Consignee).all()
+    elif ((Shipper == "Tất cả")):
+        data = XNK.query.filter_by(Cosignee=Consignee, Container_No=Container_No).all()
+    elif ((Consignee == "Tất cả") & (Container_No == "")):
+        data = XNK.query.filter_by(Shipper=Shipper).all()
+    elif ((Container_No == "")):
+        data = XNK.query.filter_by(Shipper=Shipper, Cosignee=Consignee).all()
+    elif ((Consignee == "Tất cả")):
+        data = KHO.query.filter_by(Shipper=Shipper, Container_No=Container_No).all()
+    else:
+        data = KHO.query.filter_by(Shipper=Shipper, Cosignee=Consignee, Container_No=Container_No).all()
+    return render_template("XemChungTu.html", data=data)
