@@ -241,8 +241,29 @@
                         </tr>
                       </thead>
 
-                      <tbody id="insert-row-table">
+                      <tbody>
+                      {% for k in data %}
+                          <tr>
+                          <td>{{ k.ID_XNK }}</td>
+                          <td>{{ k.Shipper }}</td>
+                          <td>{{ k.Cosignee }}</td>
+                          <td>{{ k.ETA }}</td>
+                          <td>{{ k.Port_of_Discharge }}</td>
+                          <td>{{ k.Invoice }}</td>
+                          <td>{{ k.Container_No }}</td>
+                          <td>{{ k.Goods }}</td>
+                          <td>{{ k.Carton }}</td>
+                          <td>{{ k.Price }}</td>
+                          <td>{{ k.Amount_invoice }}</td>
+                          <td>{{ k.payment_from_Fruits_and_Greens }}</td>
+                          <td>{{ k.Date_Payment }}</td>
+                          <td>{{ k.Credit_note }}</td>
+                          <td>{{ k.Balance }}</td>
+                          <td>{{ k.NOTE }}</td>
+                          <td>{{ k.Load_N0 }}</td>
 
+                          </tr>
+                      {% endfor %}
 
                       </tbody>
                     </table>
