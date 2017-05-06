@@ -1,0 +1,32 @@
+@app.route('/xemct')
+def xemct():
+    return render_template('XemCT.html')
+
+@app.route('/xemct', methods=['GET', 'POST'])
+def show_kho():
+    xnk = ""
+    MaKho = ""
+    LoaiSp = ""
+    if request.method == 'POST':
+        xnk = request.form['XNK']
+        Port_of_Discharge = xnk['']
+        Shipper = request.form['LoaiSP']
+    data = []
+    if ((xnk == "T?t c?") & (Port_of_Discharge == "") & (Shipper == "")):
+        data = KHO.query.all()
+    elif ((xnk == "T?t c?") & (Port_of_Discharge == "")):
+        pass
+    elif ((xnk == "T?t c?") & (Shipper == "")):
+        pass
+    elif ((xnk == "T?t c?")):
+        pass
+    elif ((Port_of_Discharge == "") & (Shipper == "")):
+        data = XNK.query.filter_by(XNK=Port_of_Discharge).all()
+    elif ((Port_of_Discharge == "")):
+        pass
+    elif ((Shipper == "")):
+        pass
+    else:
+        pass
+
+    return render_template("XemCT.html", data = data)
