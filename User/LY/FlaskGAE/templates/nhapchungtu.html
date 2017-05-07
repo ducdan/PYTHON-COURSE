@@ -196,8 +196,7 @@
                   </div>
                   <div class="x_content">
 
-                    <form class="form-horizontal form-label-left" novalidate action="/nhapchungtu" method="post">
-
+                    <form class="form-horizontal form-label-left"  action="nhapchungtu" method="post">
 
                       <span class="section">Thông Tin Chứng Từ</span>
 
@@ -219,7 +218,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" >Thời gian dự kiến hàng đến <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="eat" name="eat"  required="required" class="form-control col-md-7 col-xs-12">
+                          <input id="eat" name="eat"  required="required" class="form-control col-md-7 col-xs-12" placeholder="YYYY-MM-DD">
                         </div>
                       </div>
                       <div class="item form-group">
@@ -240,73 +239,67 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Số container<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="containerno" type="text" name="containerno"  class="optional form-control col-md-7 col-xs-12">
+                          <input id="containerno" name="containerno"  required="required"  class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label for="password" class="control-label col-md-3">Hàng hóa </label>
+                        <label for="password" class="control-label col-md-3">Hàng hóa <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input id="goods" name="goods" class="form-control col-md-7 col-xs-12" required="required">
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Số thùng </label>
+                        <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Số thùng <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input id="carton" name="carton"  class="form-control col-md-7 col-xs-12" required="required">
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Giá usd <span class="required">*</span>
-                        </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Giá usd</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="priceusd" name="priceusd" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="priceusd" name="priceusd" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Số tiền trên hóa đơn <span class="required">*</span>
-                        </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Số tiền trên hóa đơn</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="amountinvoice" class="form-control col-md-7 col-xs-12" name="amountinvoice"  required="required" type="text">
+                          <input id="amountinvoice" class="form-control col-md-7 col-xs-12" name="amountinvoice"  type="text">
                         </div>
                       </div>
                         <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Thanh toán từ công ty Fruits and Greens <span class="required">*</span>
-                        </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Thanh toán từ công ty F&G</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="paymentfromfruitsandgreens" class="form-control col-md-7 col-xs-12" name="paymentfromfruitsandgreens"  required="required" type="text">
+                                <input id="paymentfromfruitsandgreens" class="form-control col-md-7 col-xs-12" name="paymentfromfruitsandgreens" type="text">
                         </div>
                       </div>
                         <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày thanh toán <span class="required">*</span>
-                        </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày thanh toán </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="datepayment" class="form-control col-md-7 col-xs-12" name="datepayment"  required="required" type="text">
+                          <input id="datepayment" class="form-control col-md-7 col-xs-12" name="datepayment"  type="text">
                         </div>
                       </div>
                         <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" >Giấy báo có</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea id="creditnote" required="required" name="creditnote" class="form-control col-md-7 col-xs-12"></textarea>
+                          <textarea id="creditnote" name="creditnote" class="form-control col-md-7 col-xs-12"></textarea>
                         </div>
                       </div>
                         <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Số dư <span class="required">*</span>
-                        </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Số dư</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="balance" class="form-control col-md-7 col-xs-12"  name="balance"  required="required" type="text">
+                          <input id="balance" class="form-control col-md-7 col-xs-12"  name="balance" type="text">
                         </div>
                       </div>
                         <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" >Lưu ý</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea id="note" required="required" name="note" class="form-control col-md-7 col-xs-12"></textarea>
+                          <textarea id="note" name="note" class="form-control col-md-7 col-xs-12"></textarea>
                         </div>
                       </div>
                         <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Số phiếu dở hàng <span class="required">*</span>
-                        </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Số phiếu dở hàng</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="loadno" class="form-control col-md-7 col-xs-12"  name="loadNO"  required="required" type="text">
+                          <input id="loadno" class="form-control col-md-7 col-xs-12"  name="loadNO"  type="text">
                         </div>
                       </div>
                       <div class="ln_solid"></div>
