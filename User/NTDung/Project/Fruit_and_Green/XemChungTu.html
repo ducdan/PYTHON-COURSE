@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Xem Chứng từ </title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/css/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/css/green.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="../vendors/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../vendors/css/custom.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2><b>Chứng từ</b></h2> <br> <br>
+            <form action="xemchungtu" method="post" class="form-inline">
+
+              <div class="form-group">
+                <label name="Shipper">Shipper:</label>
+                <select name="Shipper" method="post" class="form-control" id="Shipper">
+                    <option>Tất cả</option>
+                    <option>ASIA FRESH</option>
+                    <option>DOMEX</option>
+                    <option>Freshmax</option>
+                    <option>L&M</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label name="Consignee">Consignee:</label>
+                <select name="Consignee" method="post" class="form-control" id="Consignee">
+                    <option>Tất cả</option>
+                    <option>L&G</option>
+                    <option>L&M</option>
+                </select>
+              </div>
+
+
+              <div class="form-group">
+                <label name="Container">&#160;Số container:</label>
+                <input name="Container" method="post" class="form-control" id="Container" placeholder="Tất cả">
+              </div>
+
+              <div align="right">
+              <button name ="button_submit" id="send" type="submit" class="btn btn-success" value="pushed">Tìm kiếm</button>
+              </div>
+            </form>
+
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <table id="datatable-buttons" class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th> STT</th>
+                  <th> Bên gửi </th>
+                  <th> Bên nhận </th>
+                  <th> Ngày đến </th>
+                  <th> Cảng dỡ hàng</th>
+                  <th> Số hóa đơn</th>
+                  <th> Số container</th>
+                  <th> Mặt hàng</th>
+                  <th> Số lượng</th>
+                  <th> Đơn giá</th>
+                  <th> Tổng hóa đơn</th>
+                </tr>
+              </thead>
+
+              <tbody>
+              {% for k in data %}
+                  <tr>
+                  <td>{{ k.ID_XNK }}</td>
+                  <td>{{ k.Shipper }}</td>
+                  <td>{{ k.Cosignee}}</td>
+                  <td>{{ k.ETA }}</td>
+                  <td>{{ k.Port_of_Discharge }}</td>
+                  <td>{{ k.Invoice}}</td>
+                  <td>{{ k.Container_No }}</td>
+                  <td>{{ k.Goods }}</td>
+                  <td>{{ k.Carton }}</td>
+                  <td>{{ k.Price}}</td>
+                  <td>{{ k.Amount_invoice }}</td>
+                  </tr>
+              {% endfor %}
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+</body>
+</html>

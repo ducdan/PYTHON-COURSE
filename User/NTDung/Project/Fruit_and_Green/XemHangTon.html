@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Kho </title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/css/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/css/green.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="../vendors/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../vendors/css/custom.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2><b>Kho</b></h2> <br> <br>
+            <form action="xemkho" method="post" class="form-inline">
+              <div class="form-group">
+                <label name="Kho">Mã kho/Tên kho:</label>
+                <select name="Kho" method="post" class="form-control" id="Kho">
+                    <option>Tất cả</option>
+                    <option>K001 / Kho Thủ Đức</option>
+                    <option>K002 / Kho Trần Đình Xu</option>
+                    <option>K003 / Kho Tân Phú</option>
+                </select>
+              </div>
+                <div class="form-group">
+                <label name="LoaiSP">&#160;Loại SP:</label>
+                <input name="LoaiSP" method="post" class="form-control" id="LoaiSP" placeholder="Tất cả">
+              </div>
+               <div class="form-group">
+                <label name="TenSP">&#160;Tên SP:</label>
+                <input name="TenSP" method="post" class="form-control" id="TenSP" placeholder="Tất cả">
+              </div>
+              <div align="right">
+              <button name ="button_submit" id="send" type="submit" class="btn btn-success" value="pushed">Tìm kiếm</button>
+              </div>
+            </form>
+
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <table id="datatable-buttons" class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>Mã kho</th>
+                  <th>Tên kho</th>
+                  <th>Địa chỉ</th>
+                  <th>SĐT</th>
+                  <th>Loại sản phẩm</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Số lượng tồn</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+              {% for k in data %}
+                  <tr>
+                  <td>{{ k.MaKho }}</td>
+                  <td>{{ k.TenKho }}</td>
+                  <td>{{ k.DiaChi}}</td>
+                  <td>{{ k.SDT }}</td>
+                  <td>{{ k.LoaiSP }}</td>
+                  <td>{{ k.TenSP}}</td>
+                  <td>{{ k.SLTon }}</td>
+                  </tr>
+              {% endfor %}
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+</body>
+</html>

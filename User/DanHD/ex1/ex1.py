@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    digit=5
-    return render_template('table-demo.html',digit=digit)
+
+    return render_template('table-demo.html')
 
 @app.route('/querydb',methods=['POST'])
 def abcd():

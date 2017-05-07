@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Kho </title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/css/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/css/green.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="../vendors/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../vendors/css/custom.min.css" rel="stylesheet">
+
+    <script>
+    function myFunction1() {
+        // Declare variables
+      var input, filter, table, tr, td, i;
+
+      input = document.getElementById("Kho");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("datatable-buttons");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+
+    <script>
+    function myFunction2() {
+      // Declare variables
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("LoaiSP");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("datatable-buttons");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+    <script>
+    function myFunction3() {
+      // Declare variables
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("TenSP");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("datatable-buttons");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[3];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+
+
+</head>
+<body>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2><b>Kho</b></h2> <br> <br>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label name="Kho">&#160;Tên kho:</label>
+                    <input name="Kho" class="form-control" type="text" id="Kho" onkeyup="myFunction1()" placeholder="Tất cả">
+                </div>
+
+                <div class="form-group">
+                    <label name="LoaiSP">&#160;Loại SP:</label>
+                    <input name="LoaiSP" class="form-control" type="text" id="LoaiSP" onkeyup="myFunction2()" placeholder="Tất cả">
+                </div>
+                <div class="form-group">
+                    <label name="TenSP">&#160;Tên SP:</label>
+                    <input name="TenSP" class="form-control" type="text" id="TenSP" onkeyup="myFunction3()" placeholder="Tất cả">
+                </div>
+            </form>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <table id="datatable-buttons" class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>Mã kho</th>
+                  <th>Tên kho</th>
+                  <th>Loại SP</th>
+                  <th>Tên SP</th>
+                  <th>Số lượng tồn</th>
+                  <th>Đơn vị tính</th>
+                  <th>Địa chỉ</th>
+                  <th>SĐT</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>K001</td>
+                  <td>Kho Thủ Đức</td>
+                  <td>Kiwi</td>
+                  <td>Kiwi ruột vàng Newzeland</td>
+                  <td>4</td>
+                  <td>Thùng</td>
+                  <td>Số 12 đường 6, phường Linh Chiểu, quận Thủ Đức, TPHCM</td>
+                  <td>0838379828</td>
+                </tr>
+
+                <tr>
+                  <td>K001</td>
+                  <td>Kho Thủ Đức</td>
+                  <td>Kiwi</td>
+                  <td>Kiwi ruột xanh Newzeland</td>
+                  <td>8</td>
+                  <td>Thùng</td>
+                  <td>Số 12 đường 6, phường Linh Chiểu, quận Thủ Đức, TPHCM</td>
+                  <td>0838379828</td>
+                </tr>
+
+              <tr>
+                  <td>K001</td>
+                  <td>Kho Thủ Đức</td>
+                  <td>Lê</td>
+                  <td>Lê Hàn Quốc Size 30</td>
+                  <td>10</td>
+                  <td>Thùng</td>
+                  <td>Số 12 đường 6, phường Linh Chiểu, quận Thủ Đức, TPHCM</td>
+                  <td>0838379828</td>
+                </tr>
+
+              <tr>
+                  <td>K001</td>
+                  <td>Kho Thủ Đức</td>
+                  <td>Cam</td>
+                  <td>Cam navel Mỹ size 40</td>
+                  <td>30</td>
+                  <td>Thùng</td>
+                  <td>Số 12 đường 6, phường Linh Chiểu, quận Thủ Đức, TPHCM</td>
+                  <td>0838379828</td>
+                </tr>
+
+              <tr>
+                  <td>K002</td>
+                  <td>Kho Trần Đình Xu</td>
+                  <td>Nho</td>
+                  <td>Nho đen không hạt Nam Phi</td>
+                  <td>5</td>
+                  <td>Thùng</td>
+                  <td>137/31 Trần Đình Xu, phường Nguyễn Cư Trinh, quận 1, TPHCM</td>
+                  <td>0838385916</td>
+                </tr>
+
+              <tr>
+                  <td>K002</td>
+                  <td>Kho Trần Đình Xu</td>
+                  <td>Nho</td>
+                  <td>Nho đỏ không hạt Nam Phi</td>
+                  <td>9</td>
+                  <td>Thùng</td>
+                  <td>137/31 Trần Đình Xu, phường Nguyễn Cư Trinh, quận 1, TPHCM</td>
+                  <td>0838385916</td>
+                </tr>
+
+              <tr>
+                  <td>K002</td>
+                  <td>Kho Trần Đình Xu</td>
+                  <td>Nho</td>
+                  <td>Nho đỏ có hạt Peru</td>
+                  <td>7</td>
+                  <td>Thùng</td>
+                  <td>137/31 Trần Đình Xu, phường Nguyễn Cư Trinh quận 1, TPHCM</td>
+                  <td>0838385916</td>
+                </tr>
+
+              <tr>
+                  <td>K002</td>
+                  <td>Kho Trần Đình Xu</td>
+                  <td>Táo</td>
+                  <td>Táo đỏ Mỹ King Size 100</td>
+                  <td>3</td>
+                  <td>Thùng</td>
+                  <td>137/31 Trần Đình Xu, phường Nguyễn Cư Trinh quận 1, TPHCM</td>
+                  <td>0838385916</td>
+                </tr>
+
+              <tr>
+                  <td>K002</td>
+                  <td>Kho Trần Đình Xu</td>
+                  <td>Táo</td>
+                  <td>Táo đỏ Mỹ King Size 40</td>
+                  <td>5</td>
+                  <td>Thùng</td>
+                  <td>137/31 Trần Đình Xu, phường Nguyễn Cư Trinh quận 1, TPHCM</td>
+                  <td>0838385916</td>
+                </tr>
+
+              <tr>
+                  <td>K002</td>
+                  <td>Kho Trần Đình Xu</td>
+                  <td>Chanh</td>
+                  <td>Chanh vàng Nam Phi</td>
+                  <td>2</td>
+                  <td>Thùng</td>
+                  <td>137/31 Trần Đình Xu, phường Nguyễn Cư Trinh quận 1, TPHCM</td>
+                  <td>0838385916</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
