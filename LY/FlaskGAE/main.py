@@ -36,6 +36,7 @@ def logout():
 
 @app.route('/home')
 def main():
+    db.create_all()
     print(request.cookies.get('user_name'))
     return render_template('index.html')
 
@@ -117,6 +118,7 @@ class KHO(db.Model):  # Kho
 @app.route('/nhapkho', methods=['GET','POST'])
 # @admin_permission.require()
 def nhapkho():
+    imported_data = 0
     if request.method == 'POST':
         values = request.form['PhieuNhapKho_btn']
         values = values.split("&")
@@ -151,51 +153,56 @@ def nhapkho():
                                          '838379828')
                 db.session.add(san_pham_moi)
                 db.session.commit()
+        imported_data = 1
     else:
         # values = request.form['PhieuNhapKho_btn']
         # print(values)
         pass
-    return render_template('nhapkho.html')
+
+    return render_template('nhapkho.html', imported_data=imported_data)
 
 @app.route('/xuatkho', methods=['GET','POST'])
 # @admin_permission.require()
 def xuatkho():
-    # if request.method == 'POST':
-    #     values = request.form['PhieuXuatKho_btn']
-    #     values = values.split("&")
-    #
-    #     row_quantity = int(values[1])
-    #     col_quantity = int(values[2])
-    #     table_value = values[3:]
-    #
-    #     print(row_quantity)
-    #     print(col_quantity)
-    #     print(table_value)
-    #
-    #     rows_value = [table_value[x:x + col_quantity] for x in range(0, row_quantity * col_quantity, col_quantity)]
-    #     for row_value in rows_value:
-    #         print(row_value)
-    #
-    #     for row_value in rows_value:
-    #         db.session.add(PHIEUXUAT(row_value[0], row_value[1], row_value[2],
-    #                                  row_value[3], row_value[4], row_value[5],
-    #                                  float(row_value[6]), float(row_value[7]),row_value[8],
-    #                                  float(row_value[9]), row_value[10]))
-    #     db.session.commit()
-    #
-    #     for row_value in rows_value:
-    #         san_pham_trong_kho = KHO.query.filter_by(TENSP=row_value[4]).first()
-    #         if (san_pham_trong_kho != None):
-    #             san_pham_trong_kho.SLTON -= float(row_value[6]) #SLXUAT
-    #             db.session.commit()
-    #         else:
-    #             # render_template(Error.html) : there isn't product on warehouse
-    #             pass
-    # else:
-    #     # values = request.form['PhieuNhapKho_btn']
-    #     # print(values)
-    #     pass
-    return render_template('xuatkho.html')
+    imported_data = 0
+    if request.method == 'POST':
+        values = request.form['PhieuXuatKho_btn']
+        values = values.split("&")
+
+        row_quantity = int(values[1])
+        col_quantity = int(values[2])
+        table_value = values[3:]
+
+        print(row_quantity)
+        print(col_quantity)
+        print(table_value)
+
+        rows_value = [table_value[x:x + col_quantity] for x in range(0, row_quantity * col_quantity, col_quantity)]
+        for row_value in rows_value:
+            print(row_value)
+
+        for row_value in rows_value:
+            db.session.add(PHIEUXUAT(row_value[0], row_value[1], row_value[2],
+                                     row_value[3], row_value[4], row_value[5],
+                                     float(row_value[6]), float(row_value[7]),row_value[8],
+                                     float(row_value[9]), row_value[10]))
+        db.session.commit()
+
+        for row_value in rows_value:
+            san_pham_trong_kho = KHO.query.filter_by(TENSP=row_value[4]).first()
+            if (san_pham_trong_kho != None):
+                san_pham_trong_kho.SLTON -= float(row_value[6]) #SLXUAT
+                db.session.commit()
+            else:
+                # render_template(Error.html) : there isn't product on warehouse
+                pass
+
+        imported_data = 1
+    else:
+        # values = request.form['PhieuNhapKho_btn']
+        # print(values)
+        pass
+    return render_template('xuatkho.html', imported_data=imported_data)
 
 @app.route('/report')
 def report():
@@ -203,22 +210,22 @@ def report():
 
 class XNK(db.Model): #Xuaất nhập khẩu
     ID_XNK = Column(Integer, autoincrement=True, primary_key=True)
-    Shipper = Column(Text)
-    Cosignee = Column(Text)
-    ETA = Column(DATE)
-    Port_of_Discharge = Column(Text)
-    Invoice = Column(String(10))
-    Container_No = Column(Text)
-    Goods = Column(Text)
+    Shipper = Column(String(50))
+    Cosignee = Column(String(50))
+    ETA = Column(String(50))
+    Port_of_Discharge = Column(String(50))
+    Invoice = Column(String(50))
+    Container_No = Column(String(50))
+    Goods = Column(String(50))
     Carton = Column(Integer)
-    Price = Column(DECIMAL)
-    Amount_invoice = Column(DECIMAL)
-    payment_from_Fruits_and_Greens = Column(DECIMAL)
-    Date_Payment = Column(DATE)
-    Credit_note = Column(Text)
-    Balance = Column(DECIMAL)
-    NOTE = Column(Text)
-    Load_N0 = Column(Text)
+    Price = Column(Float)
+    Amount_invoice = Column(Float)
+    payment_from_Fruits_and_Greens = Column(Float)
+    Date_Payment = Column(String(50))
+    Credit_note = Column(String(50))
+    Balance = Column(Float)
+    NOTE = Column(String(50))
+    Load_N0 = Column(String(50))
 
     def __init__(self,Shipper,Cosignee,ETA,Port_of_Discharge,Invoice,Container_No,Goods,Carton,Price,Amount_invoice,
                  payment_from_Fruits_and_Greens,Date_Payment,Credit_note,Balance,NOTE,Load_N0):
@@ -241,21 +248,36 @@ class XNK(db.Model): #Xuaất nhập khẩu
 
 @app.route('/nhapchungtu', methods=['GET','POST'])
 def xuatnhapkhau():
+    imported_data = 0
     if request.method == 'POST':
 
-        b1=request.form['shipper']
-        print("Here"+b1)
-        # print(b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16)
-
         xnk = XNK(request.form['shipper'], request.form['cosignee'], request.form['eat'], request.form['portofdischarge'],
-                  request.form['invoice'], request.form['containerNo'],
-                  request.form['goods'], request.form['carton'], request.form['price'], request.form['amountinvoice'],
+                  request.form['invoice'], request.form['containerno'],
+                  request.form['goods'], request.form['carton'], request.form['priceusd'], request.form['amountinvoice'],
                   request.form['paymentfromfruitsandgreens'], request.form['datepayment'], request.form['creditnote'],
                   request.form['balance'], request.form['note'],
-                  request.form['loadNO'])
+                  request.form['loadno'])
+        print(xnk.Shipper)
+        print(xnk.Cosignee)
+        print(xnk.ETA)
+        print(xnk.Port_of_Discharge)
+        print(xnk.Invoice)
+        print(xnk.Container_No)
+        print(xnk.Goods)
+        print(xnk.Carton)
+        print(xnk.Price)
+        print(xnk.Amount_invoice)
+        print(xnk.payment_from_Fruits_and_Greens)
+        print(xnk.Date_Payment)
+        print(xnk.Credit_note)
+        print(xnk.Balance)
+        print(xnk.NOTE)
+        print(xnk.Load_N0)
         db.session.add(xnk)
         db.session.commit()
-    return render_template('nhapchungtu.html')
+        imported_data = 1
+
+    return render_template('nhapchungtu.html', imported_data=imported_data)
 
 @app.route('/xemhangton', methods=['GET', 'POST'])
 def xemHangTon():
