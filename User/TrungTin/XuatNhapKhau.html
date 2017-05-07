@@ -226,31 +226,33 @@
                       <span class="section">Thông Tin Chứng Từ</span>
 
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="shipper">Shipper<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Shipper<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="shipper" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" required="required" type="text">
+                          <input id="shipper" class="form-control col-md-7 col-xs-12"  name="shipper" required="required" type="text">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" >Cosignee <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="cosignee" name="cosginee" required="required" class="form-control col-md-7 col-xs-12">
+                          <input id="cosignee" name="cosignee" required="required" class="form-control col-md-7 col-xs-12" type="text">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" >EAT <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="eat" name="eat"  required="required" class="form-control col-md-7 col-xs-12">
+                          <input id="eta" name="eta"  required="required" class="form-control col-md-7 col-xs-12" type="date">
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Port OF Discharge <span class="required">*</span>
-                        </label>
+                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Port of Discharge</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="portofdischarge" name="portofdischarge" required="required"  class="form-control col-md-7 col-xs-12">
+							<select id="portofdischarge" name="portofdischarge" class="selectpicker btn btn-default">
+							  <option>HCM</option>
+							  <option>HN</option>
+							</select>
                         </div>
                       </div>
                       <div class="item form-group">
@@ -261,50 +263,50 @@
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Container No <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Container No<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="containerno" type="text" name="containerno"  class="optional form-control col-md-7 col-xs-12">
+                          <input id="containerNo" type="text" name="containerNo"  class="optional form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label for="password" class="control-label col-md-3">Goods </label>
+                        <label class="control-label col-md-3">Goods </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input id="goods" name="goods" class="form-control col-md-7 col-xs-12" required="required">
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Carton </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Carton </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="carton" name="carton"  class="form-control col-md-7 col-xs-12" required="required">
+                          <input id="carton" name="carton"  class="form-control col-md-7 col-xs-12" required="required" type="number">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Price usd <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="priceusd" name="priceusd" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="number" id="priceusd" name="priceusd" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Amount invoice <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Amount invoice<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="amountinvoice" class="form-control col-md-7 col-xs-12" name="amountinvoice"  required="required" type="text">
+                          <input id="amountinvoice" class="form-control col-md-7 col-xs-12" name="amountinvoice"  required="required">
                         </div>
                       </div>
                         <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Payment from Fruits and Greens <span class="required">*</span>
                         </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="paymentfromfruitsandgreens" class="form-control col-md-7 col-xs-12" name="paymentfromfruitsandgreens"  required="required" type="text">
+                                <input id="paymentfromfruitsandgreens" class="form-control col-md-7 col-xs-12" name="paymentfromfruitsandgreens"  required="required">
                         </div>
                       </div>
                         <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Payment <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="datepayment" class="form-control col-md-7 col-xs-12" name="datepayment"  required="required" type="text">
+                          <input id="datepayment" class="form-control col-md-7 col-xs-12" name="datepayment"  required="required" type="date">
                         </div>
                       </div>
                         <div class="item form-group">
@@ -314,10 +316,10 @@
                         </div>
                       </div>
                         <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Balance <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Balance<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="balance" class="form-control col-md-7 col-xs-12"  name="balance"  required="required" type="text">
+                          <input id="balance" class="form-control col-md-7 col-xs-12" name="balance" required="required">
                         </div>
                       </div>
                         <div class="item form-group">
@@ -327,17 +329,17 @@
                         </div>
                       </div>
                         <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Load No <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Load No<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="loadno" class="form-control col-md-7 col-xs-12"  name="loadno"  required="required" type="text">
+                          <input id="loadNo" class="form-control col-md-7 col-xs-12"  name="loadNO"  required="required">
                         </div>
                       </div>
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
                           <button type="submit" class="btn btn-primary">Cancel</button>
-                          <button id="send" type="submit" class="btn btn-success">Submit</button>
+                           <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                       </div>
                     </form>
@@ -372,7 +374,7 @@
     <script src="../vendors/validator/validator.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+    <script src="../vendors/build/js/custom.min.js"></script>
 
   </body>
 </html>
