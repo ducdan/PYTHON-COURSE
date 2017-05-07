@@ -117,6 +117,7 @@ class KHO(db.Model):  # Kho
 @app.route('/nhapkho', methods=['GET','POST'])
 # @admin_permission.require()
 def nhapkho():
+    imported_data = 0
     if request.method == 'POST':
         values = request.form['PhieuNhapKho_btn']
         values = values.split("&")
@@ -151,51 +152,56 @@ def nhapkho():
                                          '838379828')
                 db.session.add(san_pham_moi)
                 db.session.commit()
+        imported_data = 1
     else:
         # values = request.form['PhieuNhapKho_btn']
         # print(values)
         pass
-    return render_template('nhapkho.html')
+
+    return render_template('nhapkho.html', imported_data=imported_data)
 
 @app.route('/xuatkho', methods=['GET','POST'])
 # @admin_permission.require()
 def xuatkho():
-    # if request.method == 'POST':
-    #     values = request.form['PhieuXuatKho_btn']
-    #     values = values.split("&")
-    #
-    #     row_quantity = int(values[1])
-    #     col_quantity = int(values[2])
-    #     table_value = values[3:]
-    #
-    #     print(row_quantity)
-    #     print(col_quantity)
-    #     print(table_value)
-    #
-    #     rows_value = [table_value[x:x + col_quantity] for x in range(0, row_quantity * col_quantity, col_quantity)]
-    #     for row_value in rows_value:
-    #         print(row_value)
-    #
-    #     for row_value in rows_value:
-    #         db.session.add(PHIEUXUAT(row_value[0], row_value[1], row_value[2],
-    #                                  row_value[3], row_value[4], row_value[5],
-    #                                  float(row_value[6]), float(row_value[7]),row_value[8],
-    #                                  float(row_value[9]), row_value[10]))
-    #     db.session.commit()
-    #
-    #     for row_value in rows_value:
-    #         san_pham_trong_kho = KHO.query.filter_by(TENSP=row_value[4]).first()
-    #         if (san_pham_trong_kho != None):
-    #             san_pham_trong_kho.SLTON -= float(row_value[6]) #SLXUAT
-    #             db.session.commit()
-    #         else:
-    #             # render_template(Error.html) : there isn't product on warehouse
-    #             pass
-    # else:
-    #     # values = request.form['PhieuNhapKho_btn']
-    #     # print(values)
-    #     pass
-    return render_template('xuatkho.html')
+    imported_data = 0
+    if request.method == 'POST':
+        values = request.form['PhieuXuatKho_btn']
+        values = values.split("&")
+
+        row_quantity = int(values[1])
+        col_quantity = int(values[2])
+        table_value = values[3:]
+
+        print(row_quantity)
+        print(col_quantity)
+        print(table_value)
+
+        rows_value = [table_value[x:x + col_quantity] for x in range(0, row_quantity * col_quantity, col_quantity)]
+        for row_value in rows_value:
+            print(row_value)
+
+        for row_value in rows_value:
+            db.session.add(PHIEUXUAT(row_value[0], row_value[1], row_value[2],
+                                     row_value[3], row_value[4], row_value[5],
+                                     float(row_value[6]), float(row_value[7]),row_value[8],
+                                     float(row_value[9]), row_value[10]))
+        db.session.commit()
+
+        for row_value in rows_value:
+            san_pham_trong_kho = KHO.query.filter_by(TENSP=row_value[4]).first()
+            if (san_pham_trong_kho != None):
+                san_pham_trong_kho.SLTON -= float(row_value[6]) #SLXUAT
+                db.session.commit()
+            else:
+                # render_template(Error.html) : there isn't product on warehouse
+                pass
+
+        imported_data = 1
+    else:
+        # values = request.form['PhieuNhapKho_btn']
+        # print(values)
+        pass
+    return render_template('xuatkho.html', imported_data=imported_data)
 
 @app.route('/report')
 def report():

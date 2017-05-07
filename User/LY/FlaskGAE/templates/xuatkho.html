@@ -432,17 +432,6 @@
 				returned_data += '&' + cell_value  ;
 			});
 			$('#submit_btn').attr('value', returned_data) ;
-			BootstrapDialog.show({
-                title: 'Xác nhận',
-                message: 'Phiếu của bạn đã được xử lý',
-                buttons: [{
-                    label: 'OK',
-                    cssClass: 'btn-primary',
-                    action: function (dialogItself) {
-                        dialogItself.close();
-                    }
-                }]
-            });
             return returned_data;
 		});
 	</script>
@@ -466,7 +455,23 @@
             $("#TongTien").val(so_tien);
         });
     </script>
-
+     <script>
+        $( document ).ready(function () {
+            {% if imported_data == 1 %}
+                BootstrapDialog.show({
+                    title: 'Xác nhận',
+                    message: 'Phiếu của bạn đã được xử lý',
+                    buttons: [{
+                                label: 'OK',
+                                cssClass: 'btn-primary',
+                                action: function(dialogItself){
+                                    dialogItself.close();
+                                }
+                    }]
+            });
+            {% endif %}
+        })
+    </script>
 
     </div>
   </body>

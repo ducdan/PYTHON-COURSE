@@ -418,11 +418,7 @@
 		});
 	</script>
 	<script>
-
 		$('#submit_btn').bind("click",function(){
-            submit_data();
-		});
-		function submit_data(){
             var cols_quantity = $('#insert-header-table >tr >th ').length ;
 			var rows_quantity = $('#insert-row-table >tr').length;
 			var returned_data = '&' + String(rows_quantity) + '&' + String(cols_quantity)  ;
@@ -434,23 +430,8 @@
 				returned_data += '&' + cell_value  ;
 			});
 			$('#submit_btn').val(returned_data) ;
-			submit_confirm();
 			return returned_data;
-        };
-        function submit_confirm(){
-            BootstrapDialog.show({
-                    title: 'Xác nhận',
-                    message: 'Phiếu của bạn đã được xử lý',
-                    buttons: [{
-                                label: 'OK',
-                                cssClass: 'btn-primary',
-                                action: function(dialogItself){
-                                    dialogItself.close();
-                                }
-                    }]
-            });
-            return 1;
-        };
+		});
 	</script>
     <script>
         $("#SoLuongNhap").keyup(function() {
@@ -471,6 +452,23 @@
             }
             $("#TongTien").val(so_tien);
         });
+    </script>
+    <script>
+        $( document ).ready(function () {
+            {% if imported_data == 1 %}
+                BootstrapDialog.show({
+                    title: 'Xác nhận',
+                    message: 'Phiếu của bạn đã được xử lý',
+                    buttons: [{
+                                label: 'OK',
+                                cssClass: 'btn-primary',
+                                action: function(dialogItself){
+                                    dialogItself.close();
+                                }
+                    }]
+            });
+            {% endif %}
+        })
     </script>
     </div>
   </body>
