@@ -85,9 +85,9 @@ mod5 = Bicycle('Model 5', tubeless, carbon, yamaha)
 shop = Bikes_Shops('Bikes', .20)
 shop.inventory = [mod0, mod1, mod2, mod3, mod4, mod5]
 
-#-------------------------------------------------------------------------------------
-#2. Create three customers.
-# Customers
+# -------------------------------------------------------------------------------------
+# 2. Create three customers.
+Customers
 cus0 = Customers('Tom', 200)
 cus1 = Customers('Maria', 500)
 cus2 = Customers('John', 1000)
@@ -99,26 +99,26 @@ for i in list_cus:
     lst = i.afford_bike(shop)
     print("{} co the mua: {}".format(i.name, [lst[j].name for j in range(len(lst))]))
 
-#-------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------
 # 4. Print the initial inventory of the bike shop for each bike it carries.
-print ("---------------------------------------------")
-print ('Kiem ke hang hoa cua {}'.format(shop.name))
-shop.show_inventory()
-
-#-------------------------------------------------------------------------------------
-# 5. Buy bike for each customer.
-print ("---------------------------------------------")
-for i in list_cus:
-    lst = i.afford_bike(shop)
-    bike = random.choice(lst)
-    shop.sell_bikes(bike, i)
-
-#-------------------------------------------------------------------------------------
-# 6. The bicycle shop's remaining inventory & profit
-print("----------------------------------------------")
-print("Kiem ke hang hoa con lai trong kho cua {}:".format(shop.name))
-shop.show_inventory()
-print ("Loi nhuan cua cua hang: {}".format(shop.profit))
+# print ("---------------------------------------------")
+# print ('Kiem ke hang hoa cua {}'.format(shop.name))
+# shop.show_inventory()
+#
+# # -------------------------------------------------------------------------------------
+# # 5. Buy bike for each customer.
+# print ("---------------------------------------------")
+# for i in list_cus:
+#     lst = i.afford_bike(shop)
+#     bike = random.choice(lst)
+#     shop.sell_bikes(bike, i)
+#
+# #-------------------------------------------------------------------------------------
+# # 6. The bicycle shop's remaining inventory & profit
+# print("----------------------------------------------")
+# print("Kiem ke hang hoa con lai trong kho cua {}:".format(shop.name))
+# shop.show_inventory()
+# print ("Loi nhuan cua cua hang: {}".format(shop.profit))
 
 
 

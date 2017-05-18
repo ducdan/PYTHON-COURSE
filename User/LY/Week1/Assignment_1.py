@@ -30,7 +30,7 @@ def favourite_taste(questions):
 def bartender(taste, ingredients):
     """ Choice ingredient randomly based on the taste"""
     print("Maybe you like a little of:  ")
-    return ingredients[taste][random.randint(0,2)] # random value from list ingredients with "key" of taste
+    return ingredients[taste][random.randint(0,0)] # random value from list ingredients with "key" of taste
 # ---------------------------------------------------------------------------------------
 print(bartender(favourite_taste(questions), ingredients))  # print random ingredient
 
