@@ -46,7 +46,7 @@ class Item(db.Model):
 	start_time = db.Column('start_time', db.DateTime)
 
 	ownwer_id = db.Column('owner_id', db.Integer, db.ForeignKey('users.id'))
-	bid = db.relationship('Bid', backref='item', uselist=False)
+	bid = db.relationship('Bid', backref='item')
 
 	def __init__(self, name, description, start_time=None):
 		self.name = name
