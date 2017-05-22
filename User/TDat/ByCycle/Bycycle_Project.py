@@ -1,4 +1,5 @@
-import random
+from flask import Flask, render_template,request
+from flask_sqlalchemy import SQLAlchemy, Model
 
 class Bicycle():
     def __init__(self, name, wheel, frame, manufacturer):
