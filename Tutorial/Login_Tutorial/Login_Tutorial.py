@@ -1,5 +1,5 @@
-from flask import Flask,json
-from flask.ext.login import LoginManager,UserMixin,login_user,current_user,login_required,logout_user
+from flask import Flask,json,render_template,request,redirect
+from flask_login import LoginManager,UserMixin,login_user,current_user,login_required,logout_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column,Integer,String
 from werkzeug.security import generate_password_hash,check_password_hash
@@ -27,11 +27,17 @@ login_manager.init_app(app)
 def load_user(user_name):
     return User.query.get(user_name)
 
-@app.route('/login',methods=['POST','GET'])
+@app.route('/login',methods=['GET','POST'])
 def login():
-    user=User.query.filter_by(user_name='admin2',password=md5('1234567'.encode()).hexdigest()).first()
-    login_user(user=user)
-    return 'Login success'
+    if request.method=='POST':
+        username=request.form['username']
+        password=request.form['password']
+        user=User.query.filter_by(user_name=username,password=md5(password.encode()).hexdigest()).first()
+        if user:
+            login_user(user=user)
+    if(current_user.is_authenticated):
+        return redirect('/home')
+    return render_template('login.html')
 
 @app.route('/logout')
 @login_required
@@ -48,14 +54,13 @@ def home():
 def register():
     db.session.add(User('admin2','1234567'))
     db.session.commit()
-    return "Registed"
+    return "Registed successful"
 @app.route('/')
 def hello_world():
     db.create_all()
-    print(md5('123456'.encode()).hexdigest())
-    print(md5('123456'.encode()).hexdigest())
-
-    return 'Hello World!'
+    # print(md5('123456'.encode()).hexdigest())
+    # print(md5('123456'.encode()).hexdigest())
+    return redirect('/login')
 
 
 
