@@ -10,16 +10,17 @@
   <div class="container">
   <div class="login">
   	<h1 class="login-heading">
-      <strong>Welcome,</strong> Blogful user.</h1>
+      <strong>Register</strong></h1>
       <form method="post">
           <input type="text" name="username" placeholder="Username" required="required" class="input-txt" />
           <input type="password" name="password" placeholder="Password" required="required" class="input-txt" />
+          <input type="email" name="email" placeholder="email" required="required" class="input-txt" />
           <div class="login-footer">
              <a href="#" class="lnk">
               <span class="icon icon--min">ಠ╭╮ಠ</span> 
-              <a href="/register">{{ err }}</a>
+              {{ err }}
             </a>
-            <button type="submit" class="btn btn--right">Sign in  </button>
+            <button type="submit" class="btn btn--right">Register  </button>
           </div>
       </form>
   </div>

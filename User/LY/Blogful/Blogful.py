@@ -1,15 +1,17 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, Text, DateTime
+from sqlalchemy import Column, Integer, String, Text, DateTime, or_
 from flask_script import Manager
 from flask_login import UserMixin, LoginManager, login_required,\
                         login_user, logout_user, current_user
 from hashlib import sha256
 import datetime
 import math
+import random
 # -------------------------------------------------------------
 app = Flask(__name__)
-app.config.from_pyfile('config.cfg')
+# app.config.from_pyfile('config.cfg')
+app.config.from_object('config.TestConfig')
 app.secret_key = 'talamaday'
 # -------------------------------------------------------------
 db = SQLAlchemy(app)
@@ -72,21 +74,26 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(name=username).first()
-        if (sha256(password.encode('utf-8')).hexdigest() == user.password):
+
+        if (user == None):
+            return render_template('login.html',
+                                   err='Wrong user, try again!, or register')
+        elif (sha256(password.encode('utf-8')).hexdigest() == user.password):
             login_user(user=user)  # command will auto login for user
             return redirect('/entries/page/1')
         else:
             return render_template('login.html',
-                                   err='Wrong user or password, try again!')
+                                   err='Wrong password, try again!, or register')
+
     return render_template('login.html',
-                           err="I've forgotten something.")
+                           err="Register")
 
 @app.route('/logout')
 @login_required  # Phai co login moi vao dc
 def log_out():
     logout_user()
-    return render_template('login.html',
-                           err="Logout successes.")
+    return render_template('logout.html',
+                           err="Relogin?")
 
 @login_manager.unauthorized_handler  # redirect to login.html if user hasn't been login
 def unauthorized():
@@ -106,6 +113,27 @@ o               ccaecat cupidatat non proident, sunt in culpa qui officia deseru
         db.session.add(entry)
     db.session.commit()
     return redirect('/entries/page/1')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if (request.method == 'POST'):
+        username = request.form['username']
+        password = request.form['password']
+        email = request.form['email']
+
+        existence_user = User.query.filter(or_(User.name==username, User.email==email)).first()
+        if (existence_user == None):
+            user = User(username, email, password)
+            db.session.add(user)
+            db.session.commit()
+            return redirect('/login')
+        else:
+            return render_template('add-user.html',
+                                   err="Choose another name, please.")
+
+    return render_template('add-user.html',
+                           err="Some information, please.")
+
 
 # -------------------------------------------------------------
 # Show main page with pagination
@@ -162,7 +190,9 @@ def view_entry(id):
     return render_template('view-entry.html',
                            entry=entry, entry_id=id)
 
-@app.route('/entries/<id>/edit', methods=['GET', 'POST'])
+
+# methods = ['DELETE'] => thay trong html cung la 'delete'
+@app.route('/entries/<id>/edit', methods=['GET','POST'])
 @login_required
 def edit_entry(id):
     entry = Entry.query.filter_by(id=id).first()
