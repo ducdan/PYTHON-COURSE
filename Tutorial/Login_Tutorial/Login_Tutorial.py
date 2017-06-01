@@ -50,9 +50,11 @@ def logout():
 def home():
     return ('Current user: '+current_user.user_name+
             '\nCurrent password: '+current_user.password)
-@app.route('/register')
+@app.route('/register',methods=['POST'])
 def register():
-    db.session.add(User('admin2','1234567'))
+    username = request.form['username']
+    password = request.form['password']
+    db.session.add(User(username,password))
     db.session.commit()
     return "Registed successful"
 @app.route('/')
@@ -66,10 +68,10 @@ def hello_world():
 
 @app.route('/api/<user_name>/<password>')
 def getPassword(user_name,password):
-    user = User.query.filter_by(user_name=user_name,password=password).first()
-    return json.dumps(user.password)
+    user = User.query.filter_by(user_name=user_name,password=md5(password.encode()).hexdigest()).first()
+    return user.password
 
-@app.route('/user/<user_id>',methods=['GET','PUT'])
+@app.route('/user/<user_id>',methods=['POST','PUT'])
 def edit(user_id):
     return "User"+user_id
 if __name__ == '__main__':
