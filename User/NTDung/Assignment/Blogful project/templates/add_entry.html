@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Entry</title>
+</head>
+<body>
+    <div class="x_panel">
+        <div class="x_title">
+    <form action="xemhangton" method="post" class="form-inline">
+        <div class="form-group">
+        <label name="Id">&#160;Id:</label>
+        <input name="Id" method="post" class="form-control" id="Id" value="{{ }}">
+      </div>
+
+        <div class="form-group">
+        <label name="Title">&#160;Title:</label>
+        <input name="Title" method="post" class="form-control" id="Title" placeholder="Title" value="{{ request.form['Title'] }}">
+      </div>
+
+      <div class="form-group">
+        <label name="Content">&#160;Content:</label>
+        <input name="Content" method="post" class="form-control" id="Content" placeholder="Content" value="{{ request.form['Content'] }}">
+      </div>
+
+      <div class="form-group">
+        <label name="DateTime">&#160;DateTime:</label>
+        <input name="DateTime" method="post" class="form-control" id="DateTime" placeholder="DateTime" value="{{ request.form['DateTime'] }}">
+      </div>
+
+        <div align="right">
+        <button name ="button_submit" id="send" type="submit" class="btn btn-success" value="pushed">Add</button>
+      </div>
+
+    </form>
+     </div>
+    </div>
+    <!-- jQuery -->
+    <script src="../static/js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../static/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../static/js/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../static/js/nprogress.js"></script>
+    <!-- iCheck -->
+    <script src="../static/js/icheck.min.js"></script>
+    <!-- Datatables -->
+    <script src="../static/js/jquery.dataTables.min.js"></script>
+    <script src="../static/js/dataTables.bootstrap.min.js"></script>
+    <script src="../static/js/dataTables.buttons.min.js"></script>
+    <script src="../static/js/buttons.bootstrap.min.js"></script>
+    <script src="../static/js/buttons.flash.min.js"></script>
+    <script src="../static/js/buttons.html5.min.js"></script>
+    <script src="../static/js/buttons.print.min.js"></script>
+    <script src="../static/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../static/js/dataTables.keyTable.min.js"></script>
+    <script src="../static/js/dataTables.responsive.min.js"></script>
+    <script src="../static/js/responsive.bootstrap.js"></script>
+    <script src="../static/js/dataTables.scroller.min.js"></script>
+    <script src="../static/js/jszip.min.js"></script>
+    <script src="../static/js/pdfmake.min.js"></script>
+    <script src="../static/js/build/vfs_fonts.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../static/js/custom.min.js"></script>
+
+</body>
+</html>
