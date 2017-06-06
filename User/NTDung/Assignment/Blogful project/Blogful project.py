@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, Text, DateTime
 import datetime
@@ -63,24 +63,29 @@ def load_user(id):
 
 @app.route('/register')
 def register():
-    db.session.add(User('admin', '123@gmail.com', '123456'))
+    db.session.add(User('admin', '123@gmail.com', '123'))
     db.session.commit()
     return "Register"
 
-@app.route('/login')
+
+@app.route("/login", methods = ["GET", "POST"])
 def login():
-    user = db.session.query(User).filter_by(name='admin', password='123456').first()
-    print(user.name)
-    login_user(user=user)
-    return 'Login Success'
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        user = User.query.filter_by(name=username).first()
+        if (user and password == user.password):
+            login_user(user=user)
+            return redirect('/')
+        else:
+            return render_template("login.html", error = "Username or password is wrong. Please try again.")
+    return render_template("login.html")
 
 @app.route('/logout')
 @login_required  # check da login moi chay
 def logout():
     logout_user()
     return 'Logout success'
-
-
 
 # Display the entries
 @app.route("/")
@@ -94,39 +99,37 @@ def entries():
 @login_required
 def viewEntry(id):
     entries = db.session.query(Entry).filter_by(id=id).all()
-    return render_template("render_entry.html", entries=entries)
-
-@app.route("/entry/<id>/edit")
-@login_required
-def editEntry(id):
-    entry = db.session.query(Entry).filter_by(id=id).first()
-    if (entry != None):
-        return "Id đã tồn tại!"
+    if (entries == None):
+        return "Id không tồn tại!"
     else:
-        if (request.method == 'POST'):
-            title = request.form['Title']
-            content = request.form['Content']
+        return render_template("render_entry.html", entries=entries)
 
-            entry = Entry(title, content)
-            db.session.add(entry)
-            db.session.commit()
-            return render_template("add_entry.html", entries=entries)
-
-@app.route("/entry/<id>/delete")
+@app.route("/entry/<id>/edit", methods = ["GET", "POST"])
 @login_required
 def editEntry(id):
     entry = db.session.query(Entry).filter_by(id=id).first()
     if (entry == None):
-        return "Không tồn tại id này!"
+        return "Id không tồn tại!"
     else:
         if (request.method == 'POST'):
-            title = request.form['Title']
-            content = request.form['Content']
+            title = request.form['title']
+            content = request.form['content']
 
-            entry = Entry(title, content)
-            db.session.add(entry)
+            entry.title = title
+            entry.content = content
             db.session.commit()
-            return render_template("add_entry.html", entries=entries)
+        return render_template("add_entry.html", notice="Edit successfully.")
+
+@app.route("/entry/<id>/delete")
+#@login_required
+def deletetEntry(id):
+    entry = db.session.query(Entry).filter_by(id=id).first()
+    if (entry == None):
+        return "Không tồn tại id này!"
+    else:
+        db.session.delete(entry)
+        db.session.commit()
+        return render_template("delete_entry.html", entry=entry)
 
 
 
