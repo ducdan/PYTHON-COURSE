@@ -6,7 +6,7 @@ from flask.ext.login import LoginManager, UserMixin, login_user, current_user, l
 
 
 app = Flask(__name__)
-app.config.from_pyfile("config_me.cfg")
+app.config.from_pyfile("config.cfg")
 app.secret_key = 'thisissecretkey'
 db = SQLAlchemy(app)
 
@@ -14,7 +14,7 @@ db = SQLAlchemy(app)
 class Entry(db.Model):
     __tablename__ = 'entries'
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     title = Column(String(1024))
     content = Column(Text)
     datetime = Column(DateTime, default=datetime.datetime.now)
@@ -38,17 +38,17 @@ db.drop_all()
 db.create_all()
 
 # Add some data
-def seed():
-    content = """Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."""
-    for i in range(25):
-        entry = Entry(
-            title="Test Entry #{}".format(i),
-            content=content
-        )
-        db.session.add(entry)
-    db.session.commit()
-
-seed()
+# def seed():
+#     content = """Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."""
+#     for i in range(25):
+#         entry = Entry(
+#             title="Test Entry #{}".format(i),
+#             content=content
+#         )
+#         db.session.add(entry)
+#     db.session.commit()
+#
+# seed()
 
 #------------------------------
 # Setting up the login system
@@ -77,8 +77,10 @@ def login():
         if (user and password == user.password):
             login_user(user=user)
             return redirect('/')
+        elif (user is None):
+            return render_template("login.html", error="Username is not exit.")
         else:
-            return render_template("login.html", error = "Username or password is wrong. Please try again.")
+            return render_template("login.html", error = "Password is wrong. Please try again.")
     return render_template("login.html")
 
 @app.route('/logout')
@@ -87,6 +89,8 @@ def logout():
     logout_user()
     return 'Logout success'
 
+##----------------------------------------------------------------------------------------------##
+
 # Display the entries
 @app.route("/")
 @login_required
@@ -94,22 +98,37 @@ def entries():
     entries = db.session.query(Entry).order_by(Entry.datetime.desc()).all()
     return render_template("entries.html", entries=entries)
 
-# Add blog entries
+# Add an entry
+@app.route("/entry/add", methods = ["GET", "POST"])
+@login_required
+def addEntry():
+    if (request.method == 'POST'):
+        title = request.form['title']
+        content = request.form['content']
+
+        entry = Entry(title, content)
+        db.session.add(entry)
+        db.session.commit()
+        return render_template("view_entry.html", entry=entry)
+    return render_template("add_entry.html")
+
+# View the entry
 @app.route("/entry/<id>")
 @login_required
 def viewEntry(id):
-    entries = db.session.query(Entry).filter_by(id=id).all()
-    if (entries == None):
-        return "Id không tồn tại!"
+    entry = db.session.query(Entry).filter_by(id=id).first()
+    if (entry is None):
+        return "Id is not exit to view!"
     else:
-        return render_template("render_entry.html", entries=entries)
+        return render_template("view_entry.html", entry=entry)
 
+# Edit an entry
 @app.route("/entry/<id>/edit", methods = ["GET", "POST"])
 @login_required
 def editEntry(id):
     entry = db.session.query(Entry).filter_by(id=id).first()
-    if (entry == None):
-        return "Id không tồn tại!"
+    if (entry is None):
+        return "Id is not exit to edit!"
     else:
         if (request.method == 'POST'):
             title = request.form['title']
@@ -118,18 +137,21 @@ def editEntry(id):
             entry.title = title
             entry.content = content
             db.session.commit()
-        return render_template("add_entry.html", notice="Edit successfully.")
+            return render_template("view_entry.html", entry=entry)
+        return render_template("add_entry.html")
 
+# Delete an entry
 @app.route("/entry/<id>/delete")
-#@login_required
+@login_required
 def deletetEntry(id):
     entry = db.session.query(Entry).filter_by(id=id).first()
     if (entry == None):
-        return "Không tồn tại id này!"
+        return "Id is not exit to delete!"
     else:
         db.session.delete(entry)
         db.session.commit()
-        return render_template("delete_entry.html", entry=entry)
+        return redirect('/')
+    return render_template("delete_entry.html", entry=entry)
 
 
 
