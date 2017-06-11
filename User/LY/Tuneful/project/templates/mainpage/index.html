@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+       table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+<body>
+
+    <audio id="audio" controls>
+        <source id="player" src="/uploads/Yeu-La-Tha-Thu-Em-Chua-18-OST-OnlyC.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <table style="width:100%">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+        {% for file in files %}
+        <tr>
+            <td>{{ file.id }}</td>
+            <td>{{ file.filename }}</td>
+        </tr>
+        {% endfor %}
+</table>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('tr td').click(function () {
+                var link = $(this).html();
+                $('#player').attr("src", '/uploads/' + link);
+                $('#audio')[0].load();
+                $('#audio')[0].play();
+            }) ;
+        })
+
+    </script>
+
+</body>
+</html>
