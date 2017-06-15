@@ -3,8 +3,18 @@ from flask_sqlalchemy import SQLAlchemy, Model
 from sqlalchemy import Column, ForeignKey, Integer, String, Text, DATE, Float
 
 app = Flask(__name__)
-app.config.form_pyfile('config.cfg')
+app.config.from_pyfile('config.cfg')
 db = SQLAlchemy(app)
+
+class User (db.Model):
+    __tablename__ = 'Users'
+    ID_NAME = Column(Integer, autoincrement=True, primary_key=True)
+    USERNAME = Column(String, nullable=False)
+    PASSWORD = Column(String, nullable=False)
+
+    def __init__(self, USERNAME, PASSWORD):
+        self.USERNAME = USERNAME
+        self.PASSWORD = PASSWORD
 
 class Items (db.Model):
     __tablename__ = 'Items'
@@ -20,16 +30,6 @@ class Items (db.Model):
         self.DESCRIPTION = DESCRIPTION
         self.START_TIME = START_TIME
         self.NAME_ID = NAME_ID
-
-class User (db.Model):
-    __tablename__ = 'Users'
-    ID_NAME = Column(Integer, autoincrement=True, primary_key=True)
-    USERNAME = Column(String, nullable=False)
-    PASSWORD = Column(String, nullable=False)
-
-    def __init__(self, USERNAME, PASSWORD):
-        self.USERNAME = USERNAME
-        self.PASSWORD = PASSWORD
 
 class Bid (db.Model):
     __tablename__ = 'Bid'
@@ -53,17 +53,17 @@ user3 = User('Anh','21221')
 user =  [user1, user2, user3]
 #2
 baseball = Items('Baseball','Sport','18/05/2017', user1.ID_NAME)
-db.add(baseball)
-db.commit()
+db.session.add(baseball)
+db.session.commit()
 #3
 bid1 = Bid('200', baseball.ID_ITEMS, user2.ID_NAME)
 bid2 = Bid('250', baseball.ID_ITEMS, user2.ID_NAME)
 bid = [bid1, bid2]
 for bids in bid:
-    db.add(bids)
-    db.commit()
+    db.session.add(bids)
+    db.session.commit()
 #4
-highest = Bid.query.fillter_by(Bid.PRICE.desc()).first
+#highest = Bid.query.filter_by(Bid.PRICE.desc()).first
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+    <link rel="stylesheet" href="/static/css/show-entries.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+
+<div class="container">
+    <div class="row">
+
+    <p></p>
+    <h1>{{ notice }}</h1>
+    <a href="/logout" class="ui-button">Logout?</a>
+    <p></p>
+    <p> </p><p> </p>
+
+        <div class="col-md-10 col-md-offset-1">
+
+            <div class="panel panel-default panel-table">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col col-xs-6">
+                    <h3 class="panel-title">Entries Control Panel</h3>
+                  </div>
+                  <div class="col col-xs-6 text-right">
+                    <a href="/entries/add"  class="btn btn-sm btn-primary btn-create">Create New</a>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped table-bordered table-list">
+                  <thead>
+                    <tr>
+                        <th><em class="fa fa-cog"></em></th>
+                        <th class="hidden-xs">ID</th>
+                        <th>Title</th>
+                        <th>Datetime</th>
+                        <th>Content</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   {% for entry in entries %}
+
+                          <tr>
+                            <td align="center">
+                              <a href="/entries/{{ entry.id }}/edit" class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                              <a href="/entries/{{ entry.id }}/delete" class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                            </td>
+
+                            <td class="hidden-xs">{{ entry.id }}</td>
+
+                            <td>{{ entry.title }}</td>
+                            <td>{{ entry.datetime }}</td>
+                              <td>{{ entry.content }}</td>
+
+                          </tr>
+
+                              {% endfor %}
+                        </tbody>
+                </table>
+
+              </div>
+
+            </div>
+
+</div></div></div>
+    <div class="row">
+        <div class="comments-container">
+            <div class="row">
+                <div class="form-group">
+                    <form method="post">
+                        <label for="wrapped">Posts/page</label>
+                        <div class="input-group">
+                            <input id="postsPerPage" class="btn btn-default" type="number" name="per_page" value="{{ entry_per_page }}"
+                                   min="1" max="20" step="1">
+                            <input id="submit"  class="btn btn-primary" type="submit" name="submit"  value="reload"  method="post">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="pagination">
+                <li class="page-item"><a class="page-link" href="/entries/page/1">First</a></li>
+                {% if page_quantity > 2 %}
+                    {% if currentPage > 1 %}
+                        <li class="page-item"><a class="page-link" href="/entries/page/{{ currentPage-1 }}">Previous</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    {% endif %}
+
+                    {% if (currentPage > 1 and currentPage < page_quantity) %}
+                        <li class="page-item"><a class="page-link" href="/entries/page/{{ currentPage - 1 }}">{{ currentPage - 1 }}</a></li>
+                        <li class="page-item active"><a class="page-link " href="/entries/page/{{ currentPage }}">{{ currentPage }}</a></li>
+                        <li class="page-item"><a class="page-link" href="/entries/page/{{ currentPage + 1 }}">{{ currentPage + 1 }}</a></li>
+                    {% elif currentPage == 1 %}
+                        <li class="page-item active"><a class="page-link " href="/entries/page/1">1</a></li>
+                        <li class="page-item"><a class="page-link" href="/entries/page/2">2</a></li>
+                        <li class="page-item"><a class="page-link" href="/entries/page/3">3</a></li>
+                    {% elif currentPage == page_quantity %}
+                        <li class="page-item"><a class="page-link" href="/entries/page/{{ currentPage - 2 }}">{{ currentPage - 2 }}</a></li>
+                        <li class="page-item"><a class="page-link" href="/entries/page/{{ currentPage - 1  }}">{{ currentPage - 1 }}</a></li>
+                        <li class="page-item active"><a class="page-link " href="/entries/page/{{ currentPage }}">{{ currentPage }}</a></li>
+                    {% endif %}
+
+                    {% if currentPage < page_quantity %}
+                        <li class="page-item"><a class="page-link" href="/entries/page/{{ currentPage + 1 }}">Next</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    {% endif %}
+                {% elif page_quantity == 2 %}
+                    <li class="page-item"><a class="page-link" href="/entries/page/1">1</a></li>
+                    <li class="page-item"><a class="page-link" href="/entries/page/2">2</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="/entries/page/1">1</a></li>
+                {% endif %}
+                <li class="page-item"><a class="page-link" href="/entries/page/{{ page_quantity }}">Last</a></li>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
