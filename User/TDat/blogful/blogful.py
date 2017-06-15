@@ -45,29 +45,30 @@ class User(db.Model, UserMixin):
     def setpassword(self, password):
         self.password = sha256(password.encode('utf-8')).hexdigest()
 
+# -----------------------------------------------------
+@login_manager.user_loader
+def load_user(id):
+    return db.session.query(User).get(int(id))
 
 #-----------------------------------------------------
 @app.route('/')
 def add_user():
     db.drop_all()
     db.create_all()
-    Nguyen = User("H.Nguyen","H.Nguyen@gmail.com","123456")
-    Anh = User("Dang Anh","DangAnh@gmail.com","123456")
-    Admin = User("Admin","Admin@gmail.com","123456")
+    Nguyen = User("HNguyen","H.Nguyen@gmail.com","nguyen")
+    Anh = User("DangAnh","DangAnh@gmail.com","anh")
+    Admin = User("admin","Admin@gmail.com","admin")
     db.session.add_all([Anh, Nguyen, Admin])
     db.session.commit()
     return redirect('/login')
-#-----------------------------------------------------
-@login_manager.user_loader
-def load_user(id):
-    return db.session.query(User).get(int(id))
+
 #-----------------------------------------------
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if (request.method == 'POST'):
-        name = request.form['username']
+        username = request.form['username']
         password = request.form['password']
-        user = User.query.filter_by(name).first()
+        user = User.query.filter_by(name=username).first()
         if (user == None):
             return render_template('login.html',
                                    err='Nhập sai, nhập lại!')
@@ -75,11 +76,20 @@ def login():
             login_user(user=user)
             return redirect('/entries/page/1')
         else:
-            return render_template('login.html',
-                                   err='Nhập sai, nhập lại!')
+            return render_template('login.html')
 
     return render_template('login.html',
                            err="Register")
+#------------------------------------------------------
+@app.route('/logout')
+@login_required
+def log_out():
+    logout_user()
+    return render_template('logout.html')
+#-----------------------------------------------------
+@login_manager.unauthorized_handler
+def unauthorized():
+    return redirect('/login')
 #------------------------------------------------------
 @login_required
 @app.route('/register', methods=['GET','POST'])
@@ -96,11 +106,12 @@ def register():
             db.session.commit()
             return  redirect('/login')
         else:
-            return render_template('add-user.html')
-    return render_template('add-user.html')
+            return render_template('login.html')
+    return render_template('login.html')
 
-# -----------------------------------------------------
 
+#-----------------------------------------------------
+@app.route('/add-entries')
 def seed():
     content = """Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
@@ -174,7 +185,7 @@ def edit_entries(id):
                                entry=entries, entry_id=id)
     else:
         pass
-    return render_template('edit-entry.html', entry=entries)
+    return render_template('edit-entries.html', entry=entries)
 
 @app.route('/entries/<id>/delete', methods=['GET', 'POST'])
 @login_required

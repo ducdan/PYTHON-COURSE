@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../blogful/.idea/blogful.iml" filepath="$PROJECT_DIR$/../blogful/.idea/blogful.iml" />
+      <module fileurl="file://$USER_HOME$/PycharmProjects/uploadfilesAPI/.idea/uploadfilesAPI.iml" filepath="$USER_HOME$/PycharmProjects/uploadfilesAPI/.idea/uploadfilesAPI.iml" />
+    </modules>
+  </component>
+</project>

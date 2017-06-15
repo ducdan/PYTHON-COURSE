@@ -2,24 +2,28 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Login page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <link rel="stylesheet" href="/static/css/style.css">
+  <title>Calm breeze login screen</title>
+
+      <link rel="stylesheet" href="/static/css/style.css">
+
 </head>
+
 <body>
-  <div class="container">
-  <div class="login">
-  	<h1 class="login-heading">
-      <form method="post">
-          <input type="text" name="username" placeholder="Username" required="required" class="input-txt" />
-          <input type="password" name="password" placeholder="Password" required="required" class="input-txt" />
-          <div class="login-footer">
-            <button type="submit" class="btn btn--right">Sign in </button>
-             <button type="submit" class="btn btn--left">Register </button>
-          </div>
-      </form>
-  </div>
+  <div class="wrapper">
+	<div class="container">
+		<h1>Welcome</h1>
+		
+		<form class="form">
+			<input type="text" placeholder="Username">
+			<input type="password" placeholder="Password">
+			<button type="submit" id="login-button">Login</button>
+		</form>
+	</div>
+
 </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
     <script src="/static/js/index.js"></script>
+
 </body>
 </html>
