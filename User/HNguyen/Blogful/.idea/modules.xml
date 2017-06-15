@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Blogful.iml" filepath="$PROJECT_DIR$/.idea/Blogful.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/Tuneful/.idea/Tuneful.iml" filepath="$USER_HOME$/Desktop/Tuneful/.idea/Tuneful.iml" />
+      <module fileurl="file://E:/Lab PY/tuneful/.idea/tuneful.iml" filepath="E:/Lab PY/tuneful/.idea/tuneful.iml" />
+    </modules>
+  </component>
+</project>
