@@ -83,7 +83,6 @@ class LogInOutProcessing(BaseTestCase):
         response = self.client.get('/logout', content_type='html/text')
         self.assertRedirects(response,'login')
 
-
 class EntryProcessing(BaseTestCase):
     # Test everything about entries
 

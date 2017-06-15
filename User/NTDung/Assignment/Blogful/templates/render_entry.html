@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Entry</title>
+</head>
+<body>
+    {% for ent in entries %}
+      <h2 align="center">{{ ent.id }}. {{ ent.title }}</h2>
+      <h2>Content: </h2>
+      <h4>{{ ent.content}}</h4>
+      <h4 align="right">{{ ent.datetime }}</h4>
+    {% endfor %}
+
+</body>
+</html>

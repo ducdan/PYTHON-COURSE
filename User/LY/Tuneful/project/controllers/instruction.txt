@@ -1,0 +1,12 @@
+# pip install requests
+import requests
+import json
+
+#Sending get request from CLI
+rg = requests.get('url/api')
+rg.content
+
+#Sending post request from CLI
+data = { 'file': { 'id': number, 'name': 'name of your song.mp3' } }
+rp = requests.post('url/api', data = json.dumps(data) )
+rg.content
